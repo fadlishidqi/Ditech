@@ -4,7 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title inertia>DITECH CREATIVE</title>
-    @vite('resources/js/app.tsx')
+
+    {{-- WAJIB untuk React HMR (preamble) --}}
+    @viteReactRefresh
+
+    {{-- Entry Vite kamu --}}
+    @vite(['resources/js/app.tsx'])
+
     @inertiaHead
 </head>
 <body class="font-sans antialiased">

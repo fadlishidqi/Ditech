@@ -8,12 +8,13 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/js/**/*.ts',
+        "./resources/js/**/*.tsx",
     ],
 
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ["Poppins", "ui-sans-serif", "system-ui"],
             },
         },
     },
