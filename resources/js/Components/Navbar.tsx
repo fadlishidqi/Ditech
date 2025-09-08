@@ -9,7 +9,7 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    // Scroll listener
+    // Scroll listener - hanya untuk background effect
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
@@ -41,25 +41,28 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full top-0 z-40 transition-colors duration-300 ${
-                isScrolled ? "bg-white shadow-lg" : "bg-transparent"
+            className={`fixed w-full top-0 z-40 transition-all duration-300 h-16 md:h-24 ${
+                isScrolled ? "bg-black/80 backdrop-blur-sm shadow-lg" : "bg-transparent"
             }`}
         >
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                <div className="flex justify-between h-16">
-                    {/* Logo & Brand */}
-                    <div className="flex items-center">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 h-full">
+                <div className="flex justify-between items-center h-full">
+                    {/* Logo & Brand - Hidden on mobile, visible on desktop */}
+                    <div className="hidden md:flex items-center">
                         <Link
                             href="/"
                             className="flex items-center space-x-3 hover:opacity-90 transition-opacity"
                         >
                             <LoadingImage
-                                src="https://firebasestorage.googleapis.com/v0/b/seputipy.appspot.com/o/covers%2FDITECHLOGONEW.png?alt=media"
+                                src="/images/DITECHLOGONEW.png"
                                 alt="Logo Ditech"
-                                className="h-20 w-20 object-contain"
+                                className="h-8 w-8 xl:h-24 xl:w-48 object-contain"
                             />
                         </Link>
                     </div>
+
+                    {/* Mobile Logo Placeholder - Empty but maintains layout */}
+                    <div className="md:hidden"></div>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center space-x-8">
@@ -72,11 +75,7 @@ const Navbar = () => {
                                     text-base font-medium transition-colors duration-300
                                     ${
                                         link.active
-                                            ? isScrolled
-                                                ? "text-blue-600 border-b-2 border-blue-600"
-                                                : "text-emerald-400 border-b-2 border-emerald-400"
-                                            : isScrolled
-                                            ? "text-gray-700 hover:text-blue-600 border-b-2 border-transparent"
+                                            ? "text-emerald-400 border-b-2 border-emerald-400"
                                             : "text-white hover:text-emerald-400 border-b-2 border-transparent"
                                     }
                                 `}
@@ -90,11 +89,7 @@ const Navbar = () => {
                     <div className="flex items-center md:hidden">
                         <button
                             onClick={toggleMenu}
-                            className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset ${
-                                isScrolled
-                                    ? "text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:ring-blue-500"
-                                    : "text-white hover:text-emerald-400 hover:bg-white/10 focus:ring-emerald-400"
-                            }`}
+                            className="inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset transition-colors duration-300 text-white hover:text-emerald-400 hover:bg-white/10 focus:ring-emerald-400"
                         >
                             <span className="sr-only">Open main menu</span>
                             {!isOpen ? (
@@ -136,13 +131,7 @@ const Navbar = () => {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="md:hidden">
-                    <div
-                        className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t ${
-                            isScrolled
-                                ? "bg-white border-gray-100"
-                                : "bg-black/80 border-gray-800"
-                        }`}
-                    >
+                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-800 bg-black/80 backdrop-blur-sm">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.label}
@@ -151,11 +140,7 @@ const Navbar = () => {
                                     block px-3 py-2 rounded-md text-base font-medium transition-colors
                                     ${
                                         link.active
-                                            ? isScrolled
-                                                ? "bg-blue-50 text-blue-600"
-                                                : "bg-emerald-400/20 text-emerald-400"
-                                            : isScrolled
-                                            ? "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                                            ? "bg-emerald-400/20 text-emerald-400"
                                             : "text-white hover:text-emerald-400 hover:bg-white/10"
                                     }
                                 `}
