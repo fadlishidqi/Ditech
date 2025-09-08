@@ -6,7 +6,6 @@ export default function Footer() {
     return (
         <footer 
             className="relative bg-cover bg-center bg-no-repeat overflow-hidden"
-            style={{ backgroundImage: "url('/images/abstract-bg.png')" }}
         >
             {/* Background overlay */}
             <div className="absolute inset-0 bg-black/70 z-0"></div>
