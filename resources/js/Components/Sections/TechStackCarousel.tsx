@@ -54,7 +54,7 @@ export default function TechStackCarousel({
 
   return (
     <>
-      <section className="py-12 overflow-hidden">
+      <section className="py-6 overflow-hidden">
 
         {/* Row 1 */}
         <div className="relative mb-8">

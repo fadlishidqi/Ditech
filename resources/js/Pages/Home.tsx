@@ -6,6 +6,7 @@ import Footer from "@/Components/Footer";
 import AboutSection from "@/Components/Sections/AboutSection";
 import VisiMisiSection from "@/Components/Sections/VisiMisiSection";
 import TechStackCarousel from "@/Components/Sections/TechStackCarousel";
+import Typewriter from '@/Components/Typewriter';
 
 export default function Home() {
   return (
@@ -29,7 +30,7 @@ export default function Home() {
             min-h-[100vh]
             flex flex-col items-center justify-center
             px-4 sm:px-6 text-center text-white
-            pt-16 pb-8
+            pt-32 pb-8
           ">
             {/* Updated Date */}
             <p className="mb-4 text-xs sm:text-sm text-white/70 opacity-0 animate-fade-in delay-200">
@@ -45,7 +46,19 @@ export default function Home() {
             <h1 className="mb-4 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight opacity-0 animate-slide-in-bottom delay-300">
               Solusi Digital Lebih Cepat
               <br />
-              <span className="text-emerald-400">Walau Kamu Sibuk.</span>
+              <Typewriter
+                className="text-emerald-400 mt-2 block"
+                phrases={[
+                  'Walau kamu sibuk.',
+                  'Walau kamu tidak ada waktu.',
+                  'Walau masih merintis.',
+                  'Walau deadline mepet.',
+                  'Walau budget terbatas.',
+                ]}
+                typingSpeed={60}
+                deletingSpeed={40}
+                pause={1200}
+              />
             </h1>
 
             {/* Description */}

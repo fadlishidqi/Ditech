@@ -15,17 +15,20 @@ interface VisiMisiSectionProps {
 
 export default function VisiMisiSection({
   visiTitle = "Visi",
-  visiDescription = "Menjadi mitra teknologi terpercaya yang menghadirkan solusi digital inovatif untuk mentransformasi bisnis dan institusi menuju era digital yang lebih maju dan berkelanjutan.",
+  visiDescription = "Kami berkomitmen untuk menciptakan solusi digital dan edukasi yang berkualitas tinggi dalam setiap layanan kami, mulai dari pengembangan mobile apps, website, UI/UX design, implementasi IoT, penerbitan buku, hingga konsultasi minat bakat. Dengan menerapkan standar profesional dan terus mengikuti perkembangan teknologi serta metode pembelajaran, kami memastikan setiap solusi yang kami berikan dapat membantu efisiensi, pertumbuhan bisnis, dan pengembangan diri klien.",
   misiTitle = "Misi",
   misiPoints = [
-    "Mengembangkan solusi teknologi berkualitas tinggi dengan fokus pada website, mobile apps, UI/UX, dan IoT yang user-friendly",
-    "Memberikan layanan penerbitan digital dan edukasi untuk meningkatkan literasi teknologi di masyarakat",
-    "Membangun hubungan jangka panjang dengan klien melalui support berkelanjutan dan inovasi yang terus berkembang"
+    "Mengembangkan solusi teknologi berkualitas dan tepat guna untuk memenuhi kebutuhan klien",
+    "Mendorong transformasi digital melalui layanan pengembangan aplikasi dan website yang inovatif",
+    "Membangun kemitraan jangka panjang dengan klien melalui pelayanan profesional",
+    "Mengembangkan talenta digital terbaik melalui pembelajaran berkelanjutan",
+    "Berkontribusi dalam pengembangan ekosistem teknologi digital di Indonesia"
   ]
 }: VisiMisiSectionProps) {
   return (
     <section className="py-16 px-6">
       <div className="max-w-6xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Visi & <span className="text-emerald-400">Misi</span> Kami
@@ -37,8 +40,13 @@ export default function VisiMisiSection({
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Visi Card */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/15 transition-all duration-300 border border-white/20">
-            <div className="flex items-center mb-6">
+          <div className="relative overflow-hidden group rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm p-8 transition-all duration-300 hover:bg-white/15">
+            {/* Shiny overlay */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] group-hover:animate-shiny"
+            />
+            <div className="flex items-center mb-6 relative z-10">
               <div className="w-16 h-16 bg-emerald-400 rounded-lg flex items-center justify-center mr-4">
                 <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -47,14 +55,19 @@ export default function VisiMisiSection({
               </div>
               <h3 className="text-2xl font-bold text-white">{visiTitle}</h3>
             </div>
-            <p className="text-white/80 text-lg leading-relaxed">
+            <p className="text-white/80 text-lg leading-relaxed relative z-10">
               {visiDescription}
             </p>
           </div>
 
           {/* Misi Card */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 hover:bg-white/15 transition-all duration-300 border border-white/20">
-            <div className="flex items-center mb-6">
+          <div className="relative overflow-hidden group rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm p-8 transition-all duration-300 hover:bg-white/15">
+            {/* Shiny overlay */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] group-hover:animate-shiny"
+            />
+            <div className="flex items-center mb-6 relative z-10">
               <div className="w-16 h-16 bg-emerald-400 rounded-lg flex items-center justify-center mr-4">
                 <svg className="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clipRule="evenodd" />
@@ -63,7 +76,7 @@ export default function VisiMisiSection({
               </div>
               <h3 className="text-2xl font-bold text-white">{misiTitle}</h3>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-4 relative z-10">
               {misiPoints.map((point, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
