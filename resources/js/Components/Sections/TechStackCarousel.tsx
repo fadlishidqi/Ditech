@@ -39,14 +39,23 @@ export default function TechStackCarousel({
   const trip2 = [...row2TechStacks, ...row2TechStacks, ...row2TechStacks];
 
   const TechCard = ({ tech }: { tech: TechStack }) => (
-    <div className="flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 group cursor-pointer mr-6 min-w-[220px]">
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 bg-white/20 rounded-lg p-2 flex-shrink-0">
-          <img src={tech.logo} alt={tech.name} className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" />
+    <div className="flex-shrink-0 bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 group cursor-pointer mr-3 sm:mr-4 lg:mr-6 min-w-[160px] sm:min-w-[180px] lg:min-w-[220px]">
+      <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
+        <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-white/20 rounded-md sm:rounded-lg p-1.5 sm:p-2 flex-shrink-0">
+          <img 
+            src={tech.logo} 
+            alt={tech.name} 
+            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" 
+            loading="lazy"
+          />
         </div>
         <div className="flex-1 min-w-0">
-          <h5 className="text-white font-semibold text-sm capitalize mb-1 truncate">{tech.name}</h5>
-          <p className="text-white/60 text-xs truncate">{tech.category}</p>
+          <h5 className="text-white font-semibold text-xs sm:text-sm lg:text-base capitalize mb-0.5 sm:mb-1 truncate">
+            {tech.name}
+          </h5>
+          <p className="text-white/60 text-[10px] sm:text-xs lg:text-sm truncate leading-tight">
+            {tech.category}
+          </p>
         </div>
       </div>
     </div>
@@ -54,12 +63,13 @@ export default function TechStackCarousel({
 
   return (
     <>
-      <section className="py-6 overflow-hidden">
+      <section className="py-4 sm:py-6 lg:py-8 overflow-hidden">
 
         {/* Row 1 */}
-        <div className="relative mb-8">
-          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
+        <div className="relative mb-4 sm:mb-6 lg:mb-8">
+          {/* Gradient overlays - Mobile optimized */}
+          <div className="absolute left-0 top-0 w-16 sm:w-24 lg:w-32 h-full bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 w-16 sm:w-24 lg:w-32 h-full bg-gradient-to-l from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
 
           <div className="flex animate-scrollRight w-fit will-change-transform [animation-play-state:running] hover:[animation-play-state:paused]">
             {trip1.map((tech, i) => <TechCard key={`row1-${i}`} tech={tech} />)}
@@ -68,8 +78,9 @@ export default function TechStackCarousel({
 
         {/* Row 2 */}
         <div className="relative">
-          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
+          {/* Gradient overlays - Mobile optimized */}
+          <div className="absolute left-0 top-0 w-16 sm:w-24 lg:w-32 h-full bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 w-16 sm:w-24 lg:w-32 h-full bg-gradient-to-l from-black/70 via-black/50 to-transparent z-10 pointer-events-none"></div>
 
           <div className="flex animate-scrollLeft w-fit will-change-transform [animation-play-state:running] hover:[animation-play-state:paused]">
             {trip2.map((tech, i) => <TechCard key={`row2-${i}`} tech={tech} />)}
@@ -77,7 +88,7 @@ export default function TechStackCarousel({
         </div>
       </section>
 
-      {/* Keyframes */}
+      {/* Keyframes - Mobile optimized animations */}
       <style>{`
         @keyframes scrollRight {
           from { transform: translateX(0); }
@@ -88,10 +99,28 @@ export default function TechStackCarousel({
           to { transform: translateX(0); }
         }
         .animate-scrollRight {
-          animation: scrollRight 60s linear infinite;
+          animation: scrollRight 45s linear infinite;
         }
         .animate-scrollLeft {
-          animation: scrollLeft 60s linear infinite;
+          animation: scrollLeft 45s linear infinite;
+        }
+        
+        /* Mobile: slower animation */
+        @media (max-width: 640px) {
+          .animate-scrollRight {
+            animation: scrollRight 60s linear infinite;
+          }
+          .animate-scrollLeft {
+            animation: scrollLeft 60s linear infinite;
+          }
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+          .animate-scrollRight,
+          .animate-scrollLeft {
+            animation-play-state: paused;
+          }
         }
       `}</style>
     </>
