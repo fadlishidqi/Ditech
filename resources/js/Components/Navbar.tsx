@@ -24,6 +24,7 @@ const Navbar = () => {
 
     const navLinks = [
         { href: "/", label: "Home", active: url === "/" },
+        { href: "/portofolio", label: "Portofolio", active: url.startsWith("/portofolio") },
         { href: "/produk", label: "Produk", active: url.startsWith("/produk") },
         { href: "/artikel", label: "Artikel", active: url.startsWith("/artikel") },
         {

@@ -7,6 +7,7 @@ import AboutSection from "@/Components/Sections/AboutSection";
 import VisiMisiSection from "@/Components/Sections/VisiMisiSection";
 import TechStackCarousel from "@/Components/Sections/TechStackCarousel";
 import Typewriter from '@/Components/Typewriter';
+import LegalitasSection from "@/Components/Sections/LegalitasSection";
 
 export default function Home() {
   return (
@@ -50,10 +51,10 @@ export default function Home() {
                 className="text-emerald-400 mt-2 block"
                 phrases={[
                   'Walau kamu sibuk.',
-                  'Walau kamu tidak ada waktu.',
-                  'Walau masih merintis.',
+                  'Walau Walau baru mulai.',
                   'Walau deadline mepet.',
                   'Walau budget terbatas.',
+                  'Walau masih merintis.',
                 ]}
                 typingSpeed={60}
                 deletingSpeed={40}
@@ -64,11 +65,11 @@ export default function Home() {
             {/* Description */}
             <p className="mx-auto mb-6 sm:mb-8 max-w-2xl lg:max-w-3xl text-sm sm:text-base md:text-lg text-white/80 leading-relaxed opacity-0 animate-slide-in-bottom delay-500 px-2">
               DITECH CREATIVE membantu bisnis & institusi membangun{" "}
-              <span className="font-medium">website, mobile apps, UI/UX</span>, dan{" "}
-              <span className="font-medium">implementasi IoT</span>—plus{" "}
+              <span className="font-medium">website, mobile apps, UI/UX</span>,{" "}
+              <span className="font-medium">implementasi IoT,</span>{" "}
               <span className="font-medium">penerbitan buku</span> dan{" "}
               <span className="font-medium">edukasi digital</span>. Berfokus pada
-              eksekusi cepat, hasil terukur, dan pengalaman yang menyenangkan.
+              eksekusi cepat, hasil terukur, dan pelayanan yang memuaskan.
             </p>
 
             {/* CTA Buttons */}
@@ -124,6 +125,11 @@ export default function Home() {
           {/* ABOUT SECTION */}
           <div className="opacity-0 animate-fade-in-up delay-[1600ms]">
             <AboutSection />
+          </div>
+
+          {/* LEGALITAS SECTION */}
+          <div className="opacity-0 animate-fade-in-up delay-[1800ms]">
+            <LegalitasSection />
           </div>
 
           {/* CTA SECTION */}

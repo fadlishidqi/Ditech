@@ -26,7 +26,7 @@ export default function VisiMisiSection({
   ]
 }: VisiMisiSectionProps) {
   return (
-    <section className="py-16 px-6">
+    <section className="py-8 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">

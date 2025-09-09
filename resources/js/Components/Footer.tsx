@@ -32,6 +32,12 @@ export default function Footer() {
                         <div>
                             <h3 className="text-lg font-semibold text-emerald-400 mb-4">Menu</h3>
                             <ul className="space-y-2">
+                                
+                                <li>
+                                    <Link href="/portofolio" className="text-white/80 hover:text-emerald-400 transition-colors duration-200">
+                                        Portofolio
+                                    </Link>
+                                </li>
                                 <li>
                                     <Link href="/produk" className="text-white/80 hover:text-emerald-400 transition-colors duration-200">
                                         Produk
