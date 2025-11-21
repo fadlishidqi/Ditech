@@ -41,19 +41,18 @@ interface Props {
 }
 
 export default function Index({ portfolios, categories, filters }: Props) {
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(
-        filters.category
-    );
-    const [selectedStatus, setSelectedStatus] = useState<string | null>(
-        filters.status
+    const [search, setSearch] = useState<string>("");
+    const [selectedCategory, setSelectedCategory] = useState<string>(
+        filters.category || ""
     );
 
-    const handleFilter = (category: string | null, status: string | null) => {
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
         router.get(
             "/portofolio",
             {
-                category: category || undefined,
-                status: status || undefined,
+                search: search || undefined,
+                category: selectedCategory || undefined,
             },
             {
                 preserveState: true,
@@ -62,20 +61,20 @@ export default function Index({ portfolios, categories, filters }: Props) {
         );
     };
 
-    const handleCategoryChange = (category: string | null) => {
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const category = e.target.value;
         setSelectedCategory(category);
-        handleFilter(category, selectedStatus);
-    };
-
-    const handleStatusChange = (status: string | null) => {
-        setSelectedStatus(status);
-        handleFilter(selectedCategory, status);
-    };
-
-    const clearFilters = () => {
-        setSelectedCategory(null);
-        setSelectedStatus(null);
-        router.get("/portofolio");
+        router.get(
+            "/portofolio",
+            {
+                search: search || undefined,
+                category: category || undefined,
+            },
+            {
+                preserveState: true,
+                preserveScroll: true,
+            }
+        );
     };
 
     return (
@@ -94,175 +93,144 @@ export default function Index({ portfolios, categories, filters }: Props) {
 
                 <main className="relative">
                     {/* Hero Section */}
-                    <section className="pt-32 pb-8 px-4 sm:px-6 lg:px-8">
+                    <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
                         <div className="max-w-7xl mx-auto text-center">
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-                                Portfolio Kami
+                            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+                                Portfolio
                             </h1>
-                            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                                Jelajahi proyek-proyek yang telah kami kerjakan untuk berbagai klien
+                            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                                Jelajahi proyek-proyek yang telah kami kerjakan
                             </p>
                         </div>
                     </section>
 
-                    {/* Filters Section - Minimalist */}
-                    <section className="pb-8 px-4 sm:px-6 lg:px-8">
-                        <div className="max-w-7xl mx-auto">
-                            <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
-                                {/* All Categories */}
-                                <button
-                                    onClick={() => handleCategoryChange(null)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                        selectedCategory === null
-                                            ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/50"
-                                            : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
-                                    }`}
-                                >
-                                    Semua Kategori
-                                </button>
+                    {/* Search & Filter Section */}
+                    <section className="pb-12 px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-4xl mx-auto">
+                            <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3">
+                                {/* Search Input */}
+                                <div className="flex-1">
+                                    <input
+                                        type="text"
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        placeholder="Cari portfolio..."
+                                        className="w-full px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all"
+                                    />
+                                </div>
 
-                                {/* Category Pills */}
-                                {categories.map((category) => (
-                                    <button
-                                        key={category}
-                                        onClick={() => handleCategoryChange(category)}
-                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                            selectedCategory === category
-                                                ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/50"
-                                                : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
-                                        }`}
+                                {/* Category Filter */}
+                                <div className="sm:w-48">
+                                    <select
+                                        value={selectedCategory}
+                                        onChange={handleCategoryChange}
+                                        className="w-full px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all appearance-none cursor-pointer"
+                                        style={{
+                                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundPosition: 'right 1rem center',
+                                            backgroundSize: '1.5rem'
+                                        }}
                                     >
-                                        {category}
-                                    </button>
-                                ))}
-                            </div>
+                                        <option value="" className="bg-gray-900">Semua Kategori</option>
+                                        {categories.map((category) => (
+                                            <option key={category} value={category} className="bg-gray-900">
+                                                {category}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
 
-                            {/* Status Filter Pills */}
-                            <div className="flex flex-wrap items-center justify-center gap-2">
+                                {/* Search Button */}
                                 <button
-                                    onClick={() => handleStatusChange(null)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                        selectedStatus === null
-                                            ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/50"
-                                            : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
-                                    }`}
+                                    type="submit"
+                                    className="px-8 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-gray-900 font-semibold rounded-xl transition-all shadow-lg shadow-emerald-400/30 hover:shadow-emerald-400/50"
                                 >
-                                    Semua Status
+                                    Cari
                                 </button>
-                                <button
-                                    onClick={() => handleStatusChange("completed")}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                        selectedStatus === "completed"
-                                            ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/50"
-                                            : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
-                                    }`}
-                                >
-                                    Selesai
-                                </button>
-                                <button
-                                    onClick={() => handleStatusChange("ongoing")}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                                        selectedStatus === "ongoing"
-                                            ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/50"
-                                            : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
-                                    }`}
-                                >
-                                    Sedang Berjalan
-                                </button>
-
-                                {/* Reset Filter */}
-                                {(selectedCategory || selectedStatus) && (
-                                    <button
-                                        onClick={clearFilters}
-                                        className="px-4 py-2 rounded-full text-sm font-medium bg-red-500/20 text-red-400 hover:bg-red-500/30 backdrop-blur-sm transition-all duration-300"
-                                    >
-                                        ✕ Reset
-                                    </button>
-                                )}
-                            </div>
+                            </form>
                         </div>
                     </section>
 
                     {/* Portfolio Grid */}
-                    <section className="pb-16 px-4 sm:px-6 lg:px-8">
+                    <section className="pb-20 px-4 sm:px-6 lg:px-8">
                         <div className="max-w-7xl mx-auto">
                             {portfolios.data.length === 0 ? (
-                                <div className="text-center py-20">
-                                    <p className="text-2xl text-white/60">
+                                <div className="text-center py-32">
+                                    <p className="text-2xl text-white/70 font-light">
                                         Tidak ada portfolio yang ditemukan
                                     </p>
                                 </div>
                             ) : (
                                 <>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                                         {portfolios.data.map((portfolio) => (
                                             <Link
                                                 key={portfolio.id}
                                                 href={`/portofolio/${portfolio.slug}`}
                                                 className="group"
                                             >
-                                                <div className="bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-emerald-400/30 transition-all duration-300 transform hover:-translate-y-2 border border-white/10">
-                                                    {/* Image */}
-                                                    <div className="relative h-48 overflow-hidden">
+                                                <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-emerald-400/50 hover:shadow-2xl hover:shadow-emerald-400/20">
+                                                    {/* Image - Portrait 4:5 ratio for 1080x1350 */}
+                                                    <div className="relative overflow-hidden" style={{ aspectRatio: '4/5' }}>
                                                         <LoadingImage
                                                             src={portfolio.image}
                                                             alt={portfolio.title}
-                                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                                         />
+
+                                                        {/* Category Badge */}
+                                                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-sm font-medium">
+                                                            {portfolio.category}
+                                                        </div>
+
+                                                        {/* Featured Badge */}
                                                         {portfolio.is_featured && (
-                                                            <div className="absolute top-3 right-3 bg-emerald-400 text-gray-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                                                                ⭐ Featured
+                                                            <div className="absolute top-4 right-4 bg-emerald-400/90 backdrop-blur-sm text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold">
+                                                                Featured
                                                             </div>
                                                         )}
-                                                        <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium">
-                                                            {portfolio.category}
+
+                                                        {/* Status Badge */}
+                                                        <div className="absolute bottom-4 left-4">
+                                                            <span
+                                                                className={`px-4 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm ${
+                                                                    portfolio.status === "completed"
+                                                                        ? "bg-green-500/80 text-white"
+                                                                        : "bg-yellow-500/80 text-gray-900"
+                                                                }`}
+                                                            >
+                                                                {portfolio.status === "completed"
+                                                                    ? "Selesai"
+                                                                    : "Sedang Berjalan"}
+                                                            </span>
                                                         </div>
                                                     </div>
 
                                                     {/* Content */}
-                                                    <div className="p-5">
-                                                        <div className="flex items-center gap-2 mb-3">
-                                                            <span
-                                                                className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                                                    portfolio.status === "completed"
-                                                                        ? "bg-green-400/20 text-green-300"
-                                                                        : "bg-yellow-400/20 text-yellow-300"
-                                                                }`}
-                                                            >
-                                                                {portfolio.status === "completed"
-                                                                    ? "✓ Selesai"
-                                                                    : "⏳ Sedang Berjalan"}
-                                                            </span>
-                                                        </div>
-
-                                                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-1">
+                                                    <div className="p-6">
+                                                        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors line-clamp-2 leading-tight">
                                                             {portfolio.title}
                                                         </h3>
 
-                                                        <p className="text-gray-300 text-sm mb-3 line-clamp-2">
+                                                        <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
                                                             {portfolio.description}
                                                         </p>
 
-                                                        {portfolio.client_name && (
-                                                            <p className="text-gray-400 text-xs mb-3">
-                                                                👤 {portfolio.client_name}
-                                                            </p>
-                                                        )}
-
                                                         {/* Technologies */}
-                                                        <div className="flex flex-wrap gap-1.5">
+                                                        <div className="flex flex-wrap gap-2">
                                                             {portfolio.technologies
                                                                 .slice(0, 3)
                                                                 .map((tech) => (
                                                                     <span
                                                                         key={tech}
-                                                                        className="px-2 py-1 bg-white/10 text-gray-300 rounded-md text-xs"
+                                                                        className="px-3 py-1 bg-white/10 text-gray-300 rounded-lg text-xs font-medium"
                                                                     >
                                                                         {tech}
                                                                     </span>
                                                                 ))}
                                                             {portfolio.technologies.length > 3 && (
-                                                                <span className="px-2 py-1 bg-emerald-400/20 text-emerald-300 rounded-md text-xs font-medium">
+                                                                <span className="px-3 py-1 bg-emerald-400/20 text-emerald-300 rounded-lg text-xs font-semibold">
                                                                     +{portfolio.technologies.length - 3}
                                                                 </span>
                                                             )}
@@ -275,8 +243,8 @@ export default function Index({ portfolios, categories, filters }: Props) {
 
                                     {/* Pagination */}
                                     {portfolios.last_page > 1 && (
-                                        <div className="mt-12 flex justify-center">
-                                            <div className="flex gap-2 bg-white/10 backdrop-blur-md rounded-full p-2">
+                                        <div className="mt-16 flex justify-center">
+                                            <div className="flex gap-2 bg-white/5 backdrop-blur-md rounded-2xl p-2 border border-white/10">
                                                 {portfolios.links.map((link, index) => (
                                                     <button
                                                         key={index}
@@ -286,12 +254,12 @@ export default function Index({ portfolios, categories, filters }: Props) {
                                                             }
                                                         }}
                                                         disabled={!link.url}
-                                                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                                                        className={`min-w-[44px] px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
                                                             link.active
-                                                                ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/50"
+                                                                ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/40"
                                                                 : link.url
-                                                                ? "text-white hover:bg-white/20"
-                                                                : "text-gray-500 cursor-not-allowed"
+                                                                ? "text-white hover:bg-white/10"
+                                                                : "text-gray-600 cursor-not-allowed"
                                                         }`}
                                                         dangerouslySetInnerHTML={{
                                                             __html: link.label,
