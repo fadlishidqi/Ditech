@@ -117,7 +117,9 @@ class PortfolioForm
 
                         DateTimePicker::make('published_at')
                             ->label('Tanggal Publikasi')
-                            ->helperText('Kosongkan untuk draft'),
+                            ->default(now())
+                            ->required()
+                            ->helperText('Portfolio akan tampil di halaman publik sesuai tanggal ini'),
                     ])
                     ->columns(3),
             ]);
