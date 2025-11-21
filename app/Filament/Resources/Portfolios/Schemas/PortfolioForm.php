@@ -59,6 +59,7 @@ class PortfolioForm
                             ->imageEditor()
                             ->imageCropAspectRatio('16:9')
                             ->maxSize(5120)
+                            ->visibility('public')
                             ->helperText('Upload gambar utama portfolio (max 5MB)'),
 
                         FileUpload::make('images')
@@ -71,6 +72,7 @@ class PortfolioForm
                             ->maxSize(5120)
                             ->maxFiles(10)
                             ->reorderable()
+                            ->visibility('public')
                             ->helperText('Upload hingga 10 gambar untuk galeri (max 5MB per gambar)'),
                     ]),
 
