@@ -123,6 +123,8 @@ class ArticleForm
                                 'Tutorial' => 'Tutorial',
                                 'Tips & Tricks' => 'Tips & Tricks',
                                 'Berita' => 'Berita',
+                                'Buku' => 'Buku',
+                                'Digital Marketing' => 'Digital Marketing',
                                 'Lainnya' => 'Lainnya',
                             ])
                             ->searchable()

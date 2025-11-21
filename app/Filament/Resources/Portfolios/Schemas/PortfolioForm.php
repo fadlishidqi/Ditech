@@ -82,12 +82,12 @@ class PortfolioForm
                             ->label('Kategori')
                             ->options([
                                 'Website' => 'Website',
-                                'Mobile App' => 'Mobile App',
-                                'Desktop App' => 'Desktop App',
-                                'E-Commerce' => 'E-Commerce',
-                                'CMS' => 'CMS',
-                                'API' => 'API',
-                                'Design' => 'Design',
+                                'Mobile' => 'Mobile',
+                                'IOT' => 'IOT',
+                                'BUKU' => 'BUKU',
+                                'HAKI' => 'HAKI',
+                                'UI,UX' => 'UI,UX',
+                                'lainya' => 'lainya',
                             ])
                             ->searchable(),
 
