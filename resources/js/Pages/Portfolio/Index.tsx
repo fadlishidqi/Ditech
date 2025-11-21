@@ -10,6 +10,8 @@ interface Portfolio {
     slug: string;
     description: string;
     image: string;
+    image_url?: string;
+    images_url?: string[];
     category: string;
     client_name: string;
     technologies: string[];
@@ -174,7 +176,7 @@ export default function Index({ portfolios, categories, filters }: Props) {
                                                     {/* Image - Portrait 4:5 ratio for 1080x1350 */}
                                                     <div className="relative overflow-hidden" style={{ aspectRatio: '4/5' }}>
                                                         <LoadingImage
-                                                            src={portfolio.image}
+                                                            src={portfolio.image_url || portfolio.image}
                                                             alt={portfolio.title}
                                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                                         />
