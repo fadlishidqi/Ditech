@@ -40,26 +40,25 @@ class PortfolioForm
                             ->label('Deskripsi Singkat')
                             ->required()
                             ->rows(3)
-                            ->maxLength(500)
-                            ->columnSpanFull(),
+                            ->maxLength(500),
 
                         MarkdownEditor::make('full_description')
-                            ->label('Deskripsi Lengkap')
-                            ->columnSpanFull(),
+                            ->label('Deskripsi Lengkap'),
                     ])
-                    ->columns(2),
+                    ->columns(1), // Membuat isian di dalam section ini vertikal
 
                 Section::make('Media')
                     ->schema([
                         FileUpload::make('image')
                             ->label('Gambar Utama')
-                            ->disk('public')
+                            ->disk('public') // Penting: agar muncul di frontend
                             ->image()
                             ->directory('portfolios')
                             ->imageEditor()
                             ->imageCropAspectRatio('4:5')
                             ->maxSize(5120)
-                            ->visibility('public')
+                            ->visibility('public') // Penting: izin akses user
+                            ->required()
                             ->helperText('Upload gambar utama portfolio (max 5MB)'),
 
                         FileUpload::make('images')
@@ -74,7 +73,8 @@ class PortfolioForm
                             ->reorderable()
                             ->visibility('public')
                             ->helperText('Upload hingga 10 gambar untuk galeri (max 5MB per gambar)'),
-                    ]),
+                    ])
+                    ->columns(1),
 
                 Section::make('Detail Proyek')
                     ->schema([
@@ -109,10 +109,9 @@ class PortfolioForm
                             ->label('Teknologi')
                             ->helperText('Masukkan teknologi yang digunakan, tekan Enter setelah setiap item')
                             ->placeholder('Laravel')
-                            ->required()
-                            ->columnSpanFull(),
+                            ->required(),
                     ])
-                    ->columns(2),
+                    ->columns(1),
 
                 Section::make('Pengaturan')
                     ->schema([
@@ -121,7 +120,9 @@ class PortfolioForm
                             ->numeric()
                             ->default(0)
                             ->helperText('Urutan tampilan (angka lebih kecil = lebih depan)'),
-                    ]),
-            ]);
+                    ])
+                    ->columns(1),
+            ])
+            ->columns(1);
     }
 }
