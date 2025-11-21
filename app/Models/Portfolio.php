@@ -91,4 +91,42 @@ class Portfolio extends Model
     {
         return 'slug';
     }
+
+    /**
+     * Get the full URL for the main image.
+     */
+    public function getImageUrlAttribute()
+    {
+        if (empty($this->image)) {
+            return null;
+        }
+
+        // If it's already a full URL, return as is
+        if (filter_var($this->image, FILTER_VALIDATE_URL)) {
+            return $this->image;
+        }
+
+        // Otherwise, prepend storage URL
+        return asset('storage/' . $this->image);
+    }
+
+    /**
+     * Get the full URLs for gallery images.
+     */
+    public function getImagesUrlAttribute()
+    {
+        if (empty($this->images)) {
+            return [];
+        }
+
+        return collect($this->images)->map(function ($image) {
+            // If it's already a full URL, return as is
+            if (filter_var($image, FILTER_VALIDATE_URL)) {
+                return $image;
+            }
+
+            // Otherwise, prepend storage URL
+            return asset('storage/' . $image);
+        })->toArray();
+    }
 }

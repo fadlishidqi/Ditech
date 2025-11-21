@@ -12,6 +12,8 @@ interface Portfolio {
     full_description: string;
     image: string;
     images: string[];
+    image_url?: string;
+    images_url?: string[];
     category: string;
     client_name: string;
     project_url: string | null;
@@ -28,9 +30,12 @@ interface Props {
 
 export default function Show({ portfolio, relatedPortfolios }: Props) {
     const [selectedImage, setSelectedImage] = useState<string>(
-        portfolio.image
+        portfolio.image_url || portfolio.image
     );
-    const allImages = [portfolio.image, ...(portfolio.images || [])];
+    const allImages = [
+        portfolio.image_url || portfolio.image,
+        ...(portfolio.images_url || portfolio.images || [])
+    ];
 
     return (
         <div

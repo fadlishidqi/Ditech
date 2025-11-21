@@ -39,6 +39,13 @@ class PortfolioController extends Controller
 
         $portfolios = $query->paginate(12)->withQueryString();
 
+        // Transform portfolios to include image URLs
+        $portfolios->through(function ($portfolio) {
+            $portfolio->image_url = $portfolio->image_url;
+            $portfolio->images_url = $portfolio->images_url;
+            return $portfolio;
+        });
+
         return Inertia::render('Portfolio/Index', [
             'portfolios' => $portfolios,
             'categories' => $categories,
@@ -66,6 +73,15 @@ class PortfolioController extends Controller
             ->where('category', $portfolio->category)
             ->limit(3)
             ->get();
+
+        // Add image URLs to portfolio and related portfolios
+        $portfolio->image_url = $portfolio->image_url;
+        $portfolio->images_url = $portfolio->images_url;
+
+        $relatedPortfolios->each(function ($related) {
+            $related->image_url = $related->image_url;
+            $related->images_url = $related->images_url;
+        });
 
         return Inertia::render('Portfolio/Show', [
             'portfolio' => $portfolio,
