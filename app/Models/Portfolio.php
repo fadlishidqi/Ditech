@@ -37,7 +37,6 @@ class Portfolio extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'images' => 'array',
         'technologies' => 'array',
         'published_at' => 'datetime',
     ];
@@ -90,5 +89,29 @@ class Portfolio extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Get the image URL attribute.
+     */
+    protected function image(): \Illuminate\Database\Eloquent\Casts\Attribute
+    {
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+            get: fn ($value) => $value ? (str_starts_with($value, 'http') ? $value : '/storage/' . $value) : null,
+        );
+    }
+
+    /**
+     * Get the images array with storage URLs.
+     */
+    protected function images(): \Illuminate\Database\Eloquent\Casts\Attribute
+    {
+        return \Illuminate\Database\Eloquent\Casts\Attribute::make(
+            get: fn ($value) => $value
+                ? collect(json_decode($value, true))->map(function ($image) {
+                    return str_starts_with($image, 'http') ? $image : '/storage/' . $image;
+                })->toArray()
+                : [],
+        );
     }
 }
