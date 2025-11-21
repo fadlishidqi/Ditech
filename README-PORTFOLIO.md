@@ -17,9 +17,10 @@ Fitur portfolio dinamis sudah berhasil dibuat dengan Laravel best practices.
 - **Portfolio Detail Page**: Halaman detail portfolio dengan image gallery dan related projects (`resources/js/Pages/Portfolio/Show.tsx`)
 
 ### Admin Panel (Filament)
-- **Filament Resource**: CRUD lengkap untuk mengelola portfolio di admin panel
-  - Form dengan validation (`app/Filament/Resources/Portfolios/Schemas/PortfolioForm.php`)
-  - Table dengan filters dan bulk actions (`app/Filament/Resources/Portfolios/Tables/PortfoliosTable.php`)
+- **Filament Resource**: CRUD lengkap untuk mengelola portfolio di admin panel (`app/Filament/Resources/Portfolios/PortfolioResource.php`)
+  - Form dengan validation dan auto slug generation
+  - Table dengan filters, search, dan bulk actions
+  - Page resources untuk Create, Edit, dan List operations
 
 ## Cara Menjalankan
 
