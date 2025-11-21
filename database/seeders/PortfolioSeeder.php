@@ -15,13 +15,5 @@ class PortfolioSeeder extends Seeder
     {
         // Create 15 portfolio items
         Portfolio::factory()->count(15)->create();
-
-        // Create some featured portfolio items specifically
-        Portfolio::factory()
-            ->count(3)
-            ->create([
-                'is_featured' => true,
-                'published_at' => now(),
-            ]);
     }
 }

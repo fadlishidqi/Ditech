@@ -40,11 +40,9 @@ class PortfolioFactory extends Factory
                 'https://picsum.photos/seed/' . fake()->unique()->numberBetween(3001, 4000) . '/800/600',
             ],
             'category' => fake()->randomElement($categories),
-            'client_name' => fake()->company(),
             'project_url' => fake()->boolean(70) ? fake()->url() : null,
             'technologies' => fake()->randomElement($technologies),
             'status' => fake()->randomElement($statuses),
-            'is_featured' => fake()->boolean(30),
             'sort_order' => fake()->numberBetween(0, 100),
             'published_at' => fake()->boolean(90) ? fake()->dateTimeBetween('-1 year', 'now') : null,
         ];
