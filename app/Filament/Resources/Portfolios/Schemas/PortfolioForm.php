@@ -57,7 +57,7 @@ class PortfolioForm
                             ->image()
                             ->directory('portfolios')
                             ->imageEditor()
-                            ->imageCropAspectRatio('16:9')
+                            ->imageCropAspectRatio('4:5')
                             ->maxSize(5120)
                             ->visibility('public')
                             ->helperText('Upload gambar utama portfolio (max 5MB)'),
