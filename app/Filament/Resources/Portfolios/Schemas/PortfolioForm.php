@@ -40,7 +40,8 @@ class PortfolioForm
                             ->label('Deskripsi Singkat')
                             ->required()
                             ->rows(3)
-                            ->maxLength(500),
+                            ->maxLength(500)
+                            ->columnSpanFull(),
 
                         MarkdownEditor::make('full_description')
                             ->label('Deskripsi Lengkap')
@@ -50,16 +51,25 @@ class PortfolioForm
 
                 Section::make('Media')
                     ->schema([
-                        TextInput::make('image')
-                            ->label('URL Gambar Utama')
-                            ->url()
-                            ->maxLength(255)
-                            ->helperText('URL gambar utama portfolio'),
+                        FileUpload::make('image')
+                            ->label('Gambar Utama')
+                            ->image()
+                            ->directory('portfolios')
+                            ->imageEditor()
+                            ->imageCropAspectRatio('16:9')
+                            ->maxSize(5120)
+                            ->helperText('Upload gambar utama portfolio (max 5MB)'),
 
-                        TagsInput::make('images')
-                            ->label('Galeri Gambar (URL)')
-                            ->helperText('Masukkan URL gambar tambahan, tekan Enter setelah setiap URL')
-                            ->placeholder('https://example.com/image.jpg'),
+                        FileUpload::make('images')
+                            ->label('Galeri Gambar')
+                            ->image()
+                            ->multiple()
+                            ->directory('portfolios/gallery')
+                            ->imageEditor()
+                            ->maxSize(5120)
+                            ->maxFiles(10)
+                            ->reorderable()
+                            ->helperText('Upload hingga 10 gambar untuk galeri (max 5MB per gambar)'),
                     ]),
 
                 Section::make('Detail Proyek')
@@ -76,10 +86,6 @@ class PortfolioForm
                                 'Design' => 'Design',
                             ])
                             ->searchable(),
-
-                        TextInput::make('client_name')
-                            ->label('Nama Klien')
-                            ->maxLength(255),
 
                         TextInput::make('project_url')
                             ->label('URL Proyek')
@@ -99,29 +105,19 @@ class PortfolioForm
                             ->label('Teknologi')
                             ->helperText('Masukkan teknologi yang digunakan, tekan Enter setelah setiap item')
                             ->placeholder('Laravel')
-                            ->required(),
+                            ->required()
+                            ->columnSpanFull(),
                     ])
                     ->columns(2),
 
                 Section::make('Pengaturan')
                     ->schema([
-                        Toggle::make('is_featured')
-                            ->label('Featured')
-                            ->helperText('Tampilkan di portfolio featured'),
-
                         TextInput::make('sort_order')
                             ->label('Urutan')
                             ->numeric()
                             ->default(0)
                             ->helperText('Urutan tampilan (angka lebih kecil = lebih depan)'),
-
-                        DateTimePicker::make('published_at')
-                            ->label('Tanggal Publikasi')
-                            ->default(now())
-                            ->required()
-                            ->helperText('Portfolio akan tampil di halaman publik sesuai tanggal ini'),
-                    ])
-                    ->columns(3),
+                    ]),
             ]);
     }
 }
