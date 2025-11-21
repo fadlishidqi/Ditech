@@ -53,6 +53,7 @@ class PortfolioForm
                     ->schema([
                         FileUpload::make('image')
                             ->label('Gambar Utama')
+                            ->disk('public')
                             ->image()
                             ->directory('portfolios')
                             ->imageEditor()
@@ -62,6 +63,7 @@ class PortfolioForm
 
                         FileUpload::make('images')
                             ->label('Galeri Gambar')
+                            ->disk('public')
                             ->image()
                             ->multiple()
                             ->directory('portfolios/gallery')
