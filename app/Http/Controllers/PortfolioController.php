@@ -15,14 +15,19 @@ class PortfolioController extends Controller
     {
         $query = Portfolio::query()->published()->orderBy('sort_order')->orderBy('published_at', 'desc');
 
+        // Search by title, description, or technologies
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('full_description', 'like', "%{$search}%");
+            });
+        }
+
         // Filter by category if provided
         if ($request->has('category') && $request->category) {
             $query->category($request->category);
-        }
-
-        // Filter by status if provided
-        if ($request->has('status') && $request->status) {
-            $query->where('status', $request->status);
         }
 
         // Get all unique categories for filter
@@ -38,6 +43,7 @@ class PortfolioController extends Controller
             'portfolios' => $portfolios,
             'categories' => $categories,
             'filters' => [
+                'search' => $request->search,
                 'category' => $request->category,
                 'status' => $request->status,
             ],
