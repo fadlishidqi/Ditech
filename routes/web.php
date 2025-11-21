@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -13,6 +14,10 @@ Route::get('/', function () {
 // Portfolio routes
 Route::get('/portofolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 Route::get('/portofolio/{portfolio}', [PortfolioController::class, 'show'])->name('portfolio.show');
+
+// Article routes
+Route::get('/artikel', [ArticleController::class, 'index'])->name('article.index');
+Route::get('/artikel/{article}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
