@@ -145,8 +145,10 @@ class ArticleForm
 
                         DateTimePicker::make('published_at')
                             ->label('Tanggal Publikasi')
+                            ->required()
                             ->default(now())
-                            ->helperText('Artikel akan otomatis dipublikasikan pada tanggal ini'),
+                            ->native(false)
+                            ->helperText('⚠️ PENTING: Artikel hanya akan muncul di website jika tanggal publikasi adalah SEKARANG atau SEBELUMNYA (bukan masa depan!)'),
                     ])
                     ->columns(2),
             ])
