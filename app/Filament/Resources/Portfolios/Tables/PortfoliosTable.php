@@ -26,7 +26,8 @@ class PortfoliosTable
                 ImageColumn::make('image')
                     ->label('Gambar')
                     ->square()
-                    ->size(60),
+                    ->size(60)
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('title')
                     ->label('Judul')
@@ -91,12 +92,12 @@ class PortfoliosTable
                     ->label('Kategori')
                     ->options([
                         'Website' => 'Website',
-                        'Mobile App' => 'Mobile App',
-                        'Desktop App' => 'Desktop App',
-                        'E-Commerce' => 'E-Commerce',
-                        'CMS' => 'CMS',
-                        'API' => 'API',
-                        'Design' => 'Design',
+                        'Mobile' => 'Mobile',
+                        'IOT' => 'IOT',
+                        'BUKU' => 'BUKU',
+                        'HAKI' => 'HAKI',
+                        'UI,UX' => 'UI,UX',
+                        'lainya' => 'lainya',
                     ]),
 
                 SelectFilter::make('status')

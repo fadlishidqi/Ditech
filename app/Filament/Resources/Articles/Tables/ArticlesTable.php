@@ -23,7 +23,8 @@ class ArticlesTable
                 ImageColumn::make('featured_image')
                     ->label('Gambar')
                     ->square()
-                    ->size(60),
+                    ->size(60)
+                    ->toggleable(isToggledHiddenByDefault: true),
 
                 TextColumn::make('title')
                     ->label('Judul')
@@ -83,6 +84,8 @@ class ArticlesTable
                         'Tutorial' => 'Tutorial',
                         'Tips & Tricks' => 'Tips & Tricks',
                         'Berita' => 'Berita',
+                        'Buku' => 'Buku',
+                        'Digital Marketing' => 'Digital Marketing',
                         'Lainnya' => 'Lainnya',
                     ]),
             ])
