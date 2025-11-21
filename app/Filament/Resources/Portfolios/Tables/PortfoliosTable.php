@@ -124,9 +124,7 @@ class PortfoliosTable
                     ->falseLabel('Tidak featured'),
             ])
             ->recordActions([
-                ViewAction::make()
-                    ->url(fn ($record) => "/portofolio/{$record->slug}")
-                    ->openUrlInNewTab(),
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

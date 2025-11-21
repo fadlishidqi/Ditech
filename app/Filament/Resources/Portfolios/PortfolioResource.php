@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Portfolios;
 use App\Filament\Resources\Portfolios\Pages\CreatePortfolio;
 use App\Filament\Resources\Portfolios\Pages\EditPortfolio;
 use App\Filament\Resources\Portfolios\Pages\ListPortfolios;
+use App\Filament\Resources\Portfolios\Pages\ViewPortfolio;
 use App\Filament\Resources\Portfolios\Schemas\PortfolioForm;
 use App\Filament\Resources\Portfolios\Tables\PortfoliosTable;
 use App\Models\Portfolio;
@@ -44,6 +45,7 @@ class PortfolioResource extends Resource
         return [
             'index' => ListPortfolios::route('/'),
             'create' => CreatePortfolio::route('/create'),
+            'view' => ViewPortfolio::route('/{record}'),
             'edit' => EditPortfolio::route('/{record}/edit'),
         ];
     }
