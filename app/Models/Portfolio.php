@@ -56,6 +56,11 @@ class Portfolio extends Model
             if (empty($portfolio->slug)) {
                 $portfolio->slug = Str::slug($portfolio->title);
             }
+
+            // Auto-publish portfolio jika published_at belum diset
+            if (empty($portfolio->published_at)) {
+                $portfolio->published_at = now();
+            }
         });
 
         static::updating(function ($portfolio) {

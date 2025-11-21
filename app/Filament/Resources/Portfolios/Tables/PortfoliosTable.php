@@ -54,17 +54,6 @@ class PortfoliosTable
                         'warning' => 'ongoing',
                     ]),
 
-                IconColumn::make('is_featured')
-                    ->label('Featured')
-                    ->boolean()
-                    ->sortable(),
-
-                TextColumn::make('client_name')
-                    ->label('Klien')
-                    ->searchable()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-
                 TextColumn::make('technologies')
                     ->label('Teknologi')
                     ->badge()
@@ -116,12 +105,6 @@ class PortfoliosTable
                         'ongoing' => 'Sedang Berjalan',
                         'completed' => 'Selesai',
                     ]),
-
-                TernaryFilter::make('is_featured')
-                    ->label('Featured')
-                    ->placeholder('Semua portfolio')
-                    ->trueLabel('Hanya featured')
-                    ->falseLabel('Tidak featured'),
             ])
             ->recordActions([
                 ViewAction::make(),
