@@ -23,9 +23,11 @@
         "vite": "^7.0.4"
     },
     "dependencies": {
+        "@heroicons/react": "^2.2.0",
         "@inertiajs/react": "^2.1.2",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
-        "react-markdown": "^10.1.0"
+        "react-markdown": "^10.1.0",
+        "react-pageflip": "^2.0.3"
     }
 }

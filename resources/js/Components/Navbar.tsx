@@ -8,10 +8,8 @@ const Navbar = () => {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    // Close mobile menu when clicking on a link
     const handleLinkClick = () => setIsOpen(false);
 
-    // Scroll listener - hanya untuk background effect
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) {
@@ -27,9 +25,10 @@ const Navbar = () => {
     const navLinks = [
         { href: "/", label: "Home", active: url === "/" },
         { href: "/portofolio", label: "Portofolio", active: url.startsWith("/portofolio") },
-        { href: "/produk", label: "Produk", active: url.startsWith("/produk") },
+        // PERUBAHAN: Produk diganti menjadi Harga
+        { href: "/harga", label: "Harga", active: url.startsWith("/harga") },
         { href: "/artikel", label: "Artikel", active: url.startsWith("/artikel") },
-        { href: "/buku-digital", label: "Buku Digital", active: url.startsWith("/buku-digital") },
+        { href: "/books", label: "Buku Digital", active: url.startsWith("/books") },
         { href: "/dosenpreneur", label: "Dosenpreneur", active: url.startsWith("/dosenpreneur") },
         { href: "/jurnal", label: "Jurnal", active: url.startsWith("/jurnal") },
     ];
