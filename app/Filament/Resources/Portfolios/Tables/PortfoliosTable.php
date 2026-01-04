@@ -93,11 +93,11 @@ class PortfoliosTable
                     ->options([
                         'Website' => 'Website',
                         'Mobile' => 'Mobile',
-                        'IOT' => 'IOT',
-                        'BUKU' => 'BUKU',
+                        'IoT' => 'IoT',
+                        'Buku' => 'Buku',
                         'HAKI' => 'HAKI',
-                        'UI,UX' => 'UI,UX',
-                        'lainya' => 'lainya',
+                        'UI/UX' => 'UI/UX',
+                        'Lainnya' => 'Lainnya',
                     ]),
 
                 SelectFilter::make('status')
