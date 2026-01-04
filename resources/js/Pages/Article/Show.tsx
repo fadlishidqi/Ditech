@@ -1,3 +1,4 @@
+// resources/js/Pages/Article/Show.tsx
 import React from "react";
 import { Head, Link } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
@@ -66,8 +67,42 @@ export default function Show({ article, relatedArticles }: Props) {
                 <Navbar />
 
                 <main className="relative">
+                    {/* Back Button */}
+                    <section className="pt-28 pb-2 px-4 sm:px-6 lg:px-8">
+                        <div className="max-w-4xl mx-auto">
+                            <Link
+                                href="/artikel"
+                                className="
+                                    inline-flex items-center gap-2
+                                    px-4 py-2
+                                    bg-white/10 backdrop-blur-md
+                                    text-white
+                                    rounded-full
+                                    transition-all duration-300
+                                    border border-white/10
+                                    hover:bg-white/20
+                                "
+                            >
+                                <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                                    />
+                                </svg>
+                                Kembali ke Artikel
+                            </Link>
+                        </div>
+                    </section>
+
                     {/* Article Header */}
-                    <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
+                    <section className="pt-4  px-4 sm:px-6 lg:px-8">
                         <div className="max-w-4xl mx-auto">
                             {/* Category & Date */}
                             <div className="flex items-center gap-4 mb-6">
@@ -248,21 +283,6 @@ export default function Show({ article, relatedArticles }: Props) {
                             </div>
                         </section>
                     )}
-
-                    {/* Back to Articles */}
-                    <section className="pb-20 px-4 sm:px-6 lg:px-8">
-                        <div className="max-w-4xl mx-auto text-center">
-                            <Link
-                                href="/artikel"
-                                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl transition-all border border-white/20 hover:border-emerald-400/50"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                </svg>
-                                Kembali ke Artikel
-                            </Link>
-                        </div>
-                    </section>
                 </main>
 
                 <Footer />

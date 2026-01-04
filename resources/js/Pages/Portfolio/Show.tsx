@@ -1,3 +1,4 @@
+// resources/js/Pages/Portfolio/Show.tsx
 import React, { useState } from "react";
 import { Head, Link } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";

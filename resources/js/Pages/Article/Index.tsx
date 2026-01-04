@@ -40,6 +40,7 @@ interface Props {
 
 export default function Index({ articles, categories, filters }: Props) {
     const [search, setSearch] = useState<string>(filters.search || "");
+    const [openCategory, setOpenCategory] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState<string>(
         filters.category || ""
     );
@@ -105,7 +106,7 @@ export default function Index({ articles, categories, filters }: Props) {
                             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
                                 Artikel
                             </h1>
-                            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                                 Baca artikel terbaru seputar teknologi, tips, dan tutorial dari DITECH CREATIVE
                             </p>
                         </div>
@@ -127,25 +128,144 @@ export default function Index({ articles, categories, filters }: Props) {
                                 </div>
 
                                 {/* Category Filter */}
-                                <div className="sm:w-48">
-                                    <select
-                                        value={selectedCategory}
-                                        onChange={handleCategoryChange}
-                                        className="w-full px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition-all appearance-none cursor-pointer"
-                                        style={{
-                                            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
-                                            backgroundRepeat: 'no-repeat',
-                                            backgroundPosition: 'right 1rem center',
-                                            backgroundSize: '1.5rem'
-                                        }}
+                                <div className="relative sm:w-56">
+                                    {/* Trigger */}
+                                    <button
+                                        type="button"
+                                        onClick={() => setOpenCategory(!openCategory)}
+                                        className="
+                                            w-full px-5 py-3.5
+                                            bg-white/10 backdrop-blur-xl
+                                            border border-white/20
+                                            rounded-xl
+                                            text-white font-medium
+                                            flex items-center justify-between
+                                            transition-all duration-300
+                                            hover:border-emerald-400/50
+                                            focus:outline-none
+                                            focus:ring-2 focus:ring-emerald-400
+                                        "
                                     >
-                                        <option value="" className="bg-gray-900">Semua Kategori</option>
-                                        {categories.map((category) => (
-                                            <option key={category} value={category} className="bg-gray-900">
-                                                {category}
-                                            </option>
-                                        ))}
-                                    </select>
+                                        <span>
+                                            {selectedCategory || "Semua Kategori"}
+                                        </span>
+
+                                        <svg
+                                            className={`w-5 h-5 transition-transform duration-300 ${
+                                                openCategory ? "rotate-180" : ""
+                                            }`}
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M19 9l-7 7-7-7"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    {/* Dropdown Panel */}
+                                    {openCategory && (
+                                        <div
+                                            className="
+                                                absolute z-50 mt-3 w-full
+                                                rounded-2xl
+                                                bg-[#1a1f26]/95 backdrop-blur-xl
+                                                border border-white/10
+                                                shadow-2xl shadow-black/40
+                                                overflow-hidden
+                                            "
+                                        >
+                                            {/* Semua kategori */}
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedCategory("");
+                                                    setOpenCategory(false);
+                                                    router.get(
+                                                        "/artikel",
+                                                        {
+                                                            search: search || undefined,
+                                                            category: undefined,
+                                                        },
+                                                        {
+                                                            preserveState: true,
+                                                            preserveScroll: true,
+                                                        }
+                                                    );
+                                                }}
+                                                className="
+                                                    w-full px-5 py-3
+                                                    flex items-center justify-between
+                                                    text-left
+                                                    text-white
+                                                    transition
+                                                    hover:bg-white/5
+                                                "
+                                            >
+                                                Semua Kategori
+                                                {!selectedCategory && (
+                                                    <svg
+                                                        className="w-4 h-4 text-white"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        strokeWidth="3"
+                                                        viewBox="0 0 24 24"
+                                                    >
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                )}
+                                            </button>
+
+                                            {categories.map((category) => (
+                                                <button
+                                                    key={category}
+                                                    onClick={() => {
+                                                        setSelectedCategory(category);
+                                                        setOpenCategory(false);
+                                                        router.get(
+                                                            "/artikel",
+                                                            {
+                                                                search: search || undefined,
+                                                                category: category,
+                                                            },
+                                                            {
+                                                                preserveState: true,
+                                                                preserveScroll: true,
+                                                            }
+                                                        );
+                                                    }}
+                                                    className={`
+                                                        w-full px-5 py-3
+                                                        flex items-center justify-between
+                                                        text-left
+                                                        transition
+                                                        hover:bg-white/5
+                                                        ${
+                                                            selectedCategory === category
+                                                                ? "bg-white/5 text-white"
+                                                                : "text-white/80"
+                                                        }
+                                                    `}
+                                                >
+                                                    {category}
+                                                    {selectedCategory === category && (
+                                                        <svg
+                                                            className="w-4 h-4 text-white"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            strokeWidth="3"
+                                                            viewBox="0 0 24 24"
+                                                        >
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    )}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Search Button */}
