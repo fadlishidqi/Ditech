@@ -98,10 +98,13 @@ export default function Index({ portfolios, categories, filters }: Props) {
                     {/* Hero Section */}
                     <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
                         <div className="max-w-7xl mx-auto text-center">
-                            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+                            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight animate-slideInFromBottom" style={{ animationFillMode: 'both' }}>
                                 Portfolio
                             </h1>
-                            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                            <p 
+                                className="text-xl text-gray-300 max-w-3xl mx-auto animate-slideInFromBottom" 
+                                style={{ animationDelay: '200ms', animationFillMode: 'both' }}
+                            >
                                 Berikut kumpulan proyek yang kami rancang dan kembangkan secara profesional untuk berbagai kebutuhan digital
                             </p>
                         </div>
@@ -109,7 +112,10 @@ export default function Index({ portfolios, categories, filters }: Props) {
 
                     {/* Search & Filter Section */}
                     <section className="pb-12 px-4 sm:px-6 lg:px-8">
-                        <div className="max-w-4xl mx-auto">
+                        <div 
+                            className="max-w-4xl mx-auto animate-slideInFromBottom"
+                            style={{ animationDelay: '400ms', animationFillMode: 'both' }}
+                        >
                             <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3">
                                 {/* Search Input */}
                                 <div className="flex-1">
@@ -139,16 +145,15 @@ export default function Index({ portfolios, categories, filters }: Props) {
                                             hover:border-emerald-400/50
                                             focus:outline-none
                                             focus:ring-2 focus:ring-emerald-400
-                                        "
+                                    "
                                     >
                                         <span>
                                             {selectedCategory || "Semua Kategori"}
                                         </span>
 
                                         <svg
-                                            className={`w-5 h-5 transition-transform duration-300 ${
-                                                openCategory ? "rotate-180" : ""
-                                            }`}
+                                            className={`w-5 h-5 transition-transform duration-300 ${openCategory ? "rotate-180" : ""
+                                                }`}
                                             fill="none"
                                             stroke="currentColor"
                                             strokeWidth="2"
@@ -227,10 +232,9 @@ export default function Index({ portfolios, categories, filters }: Props) {
                                                         text-left
                                                         transition
                                                         hover:bg-white/5
-                                                        ${
-                                                            selectedCategory === category
-                                                                ? "bg-white/5 text-emerald-400"
-                                                                : "text-white"
+                                                        ${selectedCategory === category
+                                                            ? "bg-white/5 text-emerald-400"
+                                                            : "text-white"
                                                         }
                                                     `}
                                                 >
@@ -259,7 +263,7 @@ export default function Index({ portfolios, categories, filters }: Props) {
                                 {/* Search Button */}
                                 <button
                                     type="submit"
-                                    className="px-8 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-gray-900 font-semibold rounded-xl transition-all shadow-lg shadow-emerald-400/30 hover:shadow-emerald-400/50"
+                                    className="px-8 py-3.5 bg-emerald-400 hover:bg-emerald-300 text-gray-900 font-semibold rounded-xl transition-all shadow-lg shadow-emerald-400/30 hover:shadow-emerald-400/50 active:scale-95"
                                 >
                                     Cari
                                 </button>
@@ -271,7 +275,7 @@ export default function Index({ portfolios, categories, filters }: Props) {
                     <section className="pb-20 px-4 sm:px-6 lg:px-8">
                         <div className="max-w-7xl mx-auto">
                             {portfolios.data.length === 0 ? (
-                                <div className="text-center py-32">
+                                <div className="text-center py-32 animate-fadeIn">
                                     <p className="text-2xl text-white/70 font-light">
                                         Tidak ada portfolio yang ditemukan
                                     </p>
@@ -279,11 +283,15 @@ export default function Index({ portfolios, categories, filters }: Props) {
                             ) : (
                                 <>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                                        {portfolios.data.map((portfolio) => (
+                                        {portfolios.data.map((portfolio, index) => (
                                             <Link
                                                 key={portfolio.id}
                                                 href={`/portofolio/${portfolio.slug}`}
-                                                className="group"
+                                                className="group animate-slideInFromBottom"
+                                                style={{ 
+                                                    animationDelay: `${index * 100}ms`, // Stagger effect (muncul bergantian)
+                                                    animationFillMode: 'both' 
+                                                }}
                                             >
                                                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-emerald-400/50 hover:shadow-2xl hover:shadow-emerald-400/20">
                                                     {/* Image - Portrait 4:5 ratio for 1080x1350 */}
@@ -296,7 +304,7 @@ export default function Index({ portfolios, categories, filters }: Props) {
 
                                                         {/* Featured Badge */}
                                                         {portfolio.is_featured && (
-                                                            <div className="absolute top-4 right-4 bg-emerald-400/90 backdrop-blur-sm text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold">
+                                                            <div className="absolute top-4 right-4 bg-emerald-400/90 backdrop-blur-sm text-gray-900 px-4 py-1.5 rounded-full text-sm font-bold animate-fadeIn">
                                                                 Featured
                                                             </div>
                                                         )}
@@ -306,11 +314,10 @@ export default function Index({ portfolios, categories, filters }: Props) {
                                                             <span
                                                                 className={`px-4 py-1.5 rounded-full text-sm font-medium
                                                                 backdrop-blur-xl
-                                                                ${
-                                                                    portfolio.status === "completed"
+                                                                ${portfolio.status === "completed"
                                                                         ? "bg-white/10 text-white border border-white/20"
                                                                         : "bg-yellow-500/80 text-gray-900"
-                                                                }`}
+                                                                    }`}
                                                             >
                                                                 {portfolio.status === "completed"
                                                                     ? "Selesai"
@@ -355,7 +362,7 @@ export default function Index({ portfolios, categories, filters }: Props) {
 
                                     {/* Pagination */}
                                     {portfolios.last_page > 1 && (
-                                        <div className="mt-16 flex justify-center">
+                                        <div className="mt-16 flex justify-center animate-fadeIn" style={{ animationDelay: '500ms', animationFillMode: 'both' }}>
                                             <div className="flex gap-2 bg-white/5 backdrop-blur-md rounded-2xl p-2 border border-white/10">
                                                 {portfolios.links.map((link, index) => (
                                                     <button
@@ -366,13 +373,12 @@ export default function Index({ portfolios, categories, filters }: Props) {
                                                             }
                                                         }}
                                                         disabled={!link.url}
-                                                        className={`min-w-[44px] px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                                                            link.active
+                                                        className={`min-w-[44px] px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${link.active
                                                                 ? "bg-emerald-400 text-gray-900 shadow-lg shadow-emerald-400/40"
                                                                 : link.url
-                                                                ? "text-white hover:bg-white/10"
-                                                                : "text-gray-600 cursor-not-allowed"
-                                                        }`}
+                                                                    ? "text-white hover:bg-white/10"
+                                                                    : "text-gray-600 cursor-not-allowed"
+                                                            }`}
                                                         dangerouslySetInnerHTML={{
                                                             __html: link.label,
                                                         }}

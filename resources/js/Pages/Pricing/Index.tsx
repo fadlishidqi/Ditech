@@ -48,7 +48,7 @@ export default function PricingIndex({ pricings }: Props) {
                             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
                                 Solusi Digital Tepat 
                             </h1>
-                            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                                 Di sini kami menawarkan beragam layanan dengan harga terjangkau dan benefit yang pasti sudah mencakup kebutuhan bisnis Anda.
                             </p>
                         </div>
@@ -110,10 +110,10 @@ export default function PricingIndex({ pricings }: Props) {
                                                     {/* Action Button */}
                                                     <div className="mt-6 pt-4 border-t border-white/10">
                                                         <a 
-                                                            href="https://wa.me/6281234567890" // Ganti dengan nomor WA Anda
+                                                            href="https://wa.me/6281398169073" 
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="block w-full text-center bg-emerald-500 hover:bg-emerald-400 text-gray-900 font-bold py-3 rounded-xl transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40"
+                                                            className="block w-full text-center bg-emerald-400 hover:bg-emerald-400 text-gray-900 font-bold py-3 rounded-xl transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40"
                                                         >
                                                             Pesan Sekarang
                                                         </a>
