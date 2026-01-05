@@ -84,7 +84,7 @@ export default function BookIndex({ books, categories, filters }: Props) {
             className="min-h-screen bg-cover bg-center bg-no-repeat relative"
             style={{ backgroundImage: "url('/images/BGHERO.jpg')" }}
         >
-            <Head title="Buku Digital - DITECH CREATIVE" />
+            <Head title="Buku Digital" />
 
             {/* Background overlay */}
             <div className="absolute inset-0 bg-black/50 z-0"></div>

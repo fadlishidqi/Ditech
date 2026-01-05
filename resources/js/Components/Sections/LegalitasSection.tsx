@@ -1,6 +1,4 @@
 // resources/js/Components/Sections/LegalitasSection.tsx
-import React from 'react';
-
 interface LegalitasSectionProps {
   title?: string;
   subtitle?: string;

@@ -1,6 +1,4 @@
 // resources/js/Components/Sections/AboutSection.tsx
-import React from 'react';
-
 export default function AboutSection() {
   return (
     <section id="about" className="py-8 sm:py-12 relative overflow-hidden backdrop-blur-sm">
@@ -42,7 +40,8 @@ export default function AboutSection() {
                 <div className="relative overflow-hidden rounded-lg sm:rounded-2xl">
                   <div className="h-full w-full overflow-hidden [clip-path:polygon(10%_0,100%_0,90%_100%,0_100%)]">
                     <img
-                      src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=1470&auto=format&fit=crop"
+                      // OPTIMASI: Width diturunkan ke 800px, Quality 80
+                      src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=800&auto=format&fit=crop"
                       alt="Collaboration"
                       className="w-full h-full object-cover transition-all duration-500 hover:brightness-110"
                       loading="lazy"
@@ -64,7 +63,7 @@ export default function AboutSection() {
                       {/* === SET 1 (5 gambar asli) === */}
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0">
                         <img 
-                          src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=1471&auto=format&fit=crop" 
+                          src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=60&w=400&auto=format&fit=crop" 
                           alt="Workspace" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -72,7 +71,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0">
                         <img 
-                          src="https://images.unsplash.com/photo-1497215641119-bbe6d71ebaae?q=80&w=687&auto=format&fit=crop" 
+                          src="https://images.unsplash.com/photo-1497215641119-bbe6d71ebaae?q=60&w=400&auto=format&fit=crop" 
                           alt="Innovation" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -80,7 +79,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0">
                         <img 
-                          src="https://images.unsplash.com/photo-1596658591534-591d75e2f2f7?auto=format&fit=crop&q=80" 
+                          src="https://images.unsplash.com/photo-1596658591534-591d75e2f2f7?q=60&w=400&auto=format&fit=crop" 
                           alt="Team" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -88,7 +87,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0">
                         <img 
-                          src="https://images.unsplash.com/photo-1499257398700-43669759a540?auto=format&fit=crop&q=80" 
+                          src="https://images.unsplash.com/photo-1499257398700-43669759a540?q=60&w=400&auto=format&fit=crop" 
                           alt="Meeting" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -96,7 +95,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0">
                         <img 
-                          src="https://images.unsplash.com/photo-1511376979163-f804dff7ad7b?q=80&w=687&auto=format&fit=crop" 
+                          src="https://images.unsplash.com/photo-1511376979163-f804dff7ad7b?q=60&w=400&auto=format&fit=crop" 
                           alt="Coding" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -106,7 +105,7 @@ export default function AboutSection() {
                       {/* === SET 2 (duplikat persis SET 1) === */}
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0" aria-hidden>
                         <img 
-                          src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=1471&auto=format&fit=crop" 
+                          src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=60&w=400&auto=format&fit=crop" 
                           alt="" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -114,7 +113,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0" aria-hidden>
                         <img 
-                          src="https://images.unsplash.com/photo-1497215641119-bbe6d71ebaae?q=80&w=687&auto=format&fit=crop" 
+                          src="https://images.unsplash.com/photo-1497215641119-bbe6d71ebaae?q=60&w=400&auto=format&fit=crop" 
                           alt="" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -122,7 +121,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0" aria-hidden>
                         <img 
-                          src="https://images.unsplash.com/photo-1596658591534-591d75e2f2f7?auto=format&fit=crop&q=80" 
+                          src="https://images.unsplash.com/photo-1596658591534-591d75e2f2f7?q=60&w=400&auto=format&fit=crop" 
                           alt="" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -130,7 +129,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0" aria-hidden>
                         <img 
-                          src="https://images.unsplash.com/photo-1499257398700-43669759a540?auto=format&fit=crop&q=80" 
+                          src="https://images.unsplash.com/photo-1499257398700-43669759a540?q=60&w=400&auto=format&fit=crop" 
                           alt="" 
                           className="w-full h-full object-cover" 
                           loading="lazy"
@@ -138,7 +137,7 @@ export default function AboutSection() {
                       </div>
                       <div className="h-[144px] sm:h-[192px] lg:h-[240px] flex-shrink-0" aria-hidden>
                         <img 
-                          src="https://images.unsplash.com/photo-1511376979163-f804dff7ad7b?q=80&w=687&auto=format&fit=crop" 
+                          src="https://images.unsplash.com/photo-1511376979163-f804dff7ad7b?q=60&w=400&auto=format&fit=crop" 
                           alt="" 
                           className="w-full h-full object-cover" 
                           loading="lazy"

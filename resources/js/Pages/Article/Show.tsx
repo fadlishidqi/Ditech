@@ -1,5 +1,4 @@
 // resources/js/Pages/Article/Show.tsx
-import React from "react";
 import { Head, Link } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";

@@ -1,6 +1,4 @@
 // resources/js/Components/Sections/VisiMisiSection.tsx
-import React from 'react';
-
 interface VisiMisiSectionProps {
   visiTitle?: string;
   visiDescription?: string;

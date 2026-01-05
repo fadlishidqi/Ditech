@@ -1,6 +1,4 @@
 // resources/js/Components/Sections/TechStackCarousel.tsx
-import React from 'react';
-
 interface TechStack {
   name: string;
   logo: string;

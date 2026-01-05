@@ -1,5 +1,4 @@
 // resources/js/Pages/Pricing/Index.tsx
-import React from 'react';
 import { Head } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
@@ -33,7 +32,7 @@ export default function PricingIndex({ pricings }: Props) {
             className="min-h-screen bg-cover bg-center bg-no-repeat relative"
             style={{ backgroundImage: "url('/images/BGHERO.jpg')" }}
         >
-            <Head title="Daftar Harga - DITECH CREATIVE" />
+            <Head title="Harga" />
 
             {/* Background overlay gelap */}
             <div className="absolute inset-0 bg-black/50 z-0"></div>

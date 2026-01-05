@@ -1,7 +1,5 @@
-import React from "react";
 import { Head, Link } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
-import Footer from "@/Components/Footer";
 import { AcademicCapIcon, SparklesIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export default function Index() {

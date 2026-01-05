@@ -22,6 +22,9 @@ interface Book {
     category: string;
     tags: string[];
     created_at: string;
+    e_isbn: string;
+    is_paid: boolean;
+    price: number;
 }
 
 interface Props {
