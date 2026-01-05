@@ -8,7 +8,6 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Get;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
@@ -47,7 +46,7 @@ class BookForm
                             ->length(4),
 
                         TextInput::make('e_isbn')
-                            ->label('E-ISBN') // Field Baru
+                            ->label('E-ISBN')
                             ->placeholder('Contoh: 978-602-xxxxx-x-x'),
                     ])
                     ->columns(2),
@@ -122,8 +121,9 @@ class BookForm
                             ->label('Harga (Rp)')
                             ->prefix('Rp')
                             ->numeric()
-                            ->visible(fn (Get $get) => $get('is_paid'))
-                            ->required(fn (Get $get) => $get('is_paid')),
+                            // PERBAIKAN: Hapus type hint 'Get' agar kompatibel
+                            ->visible(fn ($get) => $get('is_paid'))
+                            ->required(fn ($get) => $get('is_paid')),
                     ])
                     ->columns(2),
             ])

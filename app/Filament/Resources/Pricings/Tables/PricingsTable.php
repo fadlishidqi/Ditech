@@ -16,10 +16,6 @@ class PricingsTable
     {
         return $table
             ->columns([
-                ImageColumn::make('image')
-                    ->label('Gambar')
-                    ->square(),
-
                 TextColumn::make('title')
                     ->label('Nama Paket')
                     ->searchable()

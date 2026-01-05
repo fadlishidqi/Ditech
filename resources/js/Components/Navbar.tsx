@@ -25,11 +25,11 @@ const Navbar = () => {
     const navLinks = [
         { href: "/", label: "Home", active: url === "/" },
         { href: "/portofolio", label: "Portofolio", active: url.startsWith("/portofolio") },
-        // PERUBAHAN: Produk diganti menjadi Harga
         { href: "/harga", label: "Harga", active: url.startsWith("/harga") },
         { href: "/artikel", label: "Artikel", active: url.startsWith("/artikel") },
         { href: "/books", label: "Buku Digital", active: url.startsWith("/books") },
-        { href: "/dosenpreneur", label: "Dosenpreneur", active: url.startsWith("/dosenpreneur") },
+        // PERUBAHAN DI SINI: Dosenpreneur diganti Sekolah Aku
+        { href: "/sekolah-aku", label: "Sekolah Aku", active: url.startsWith("/sekolah-aku") },
         { href: "/jurnal", label: "Jurnal", active: url.startsWith("/jurnal") },
     ];
 
@@ -147,7 +147,7 @@ const Navbar = () => {
                                 onClick={handleLinkClick}
                                 className={`
                                     block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 
-                                    transform hover:scale-105 active:scale-95 min-h-[44px] flex items-center
+                                    transform hover:scale-105 active:scale-95 min-h-[44px] items-center
                                     ${
                                         link.active
                                             ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"

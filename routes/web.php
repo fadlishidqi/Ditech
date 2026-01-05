@@ -37,3 +37,8 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show')
 
 // Pricing routes
 Route::get('/harga', [PricingController::class, 'index'])->name('pricing.index');
+
+// Sekolah Aku route
+Route::get('/sekolah-aku', function () {
+    return Inertia::render('SekolahAku/Index');
+})->name('sekolah-aku');

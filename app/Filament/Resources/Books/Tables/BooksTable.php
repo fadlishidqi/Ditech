@@ -21,11 +21,6 @@ class BooksTable
     {
         return $table
             ->columns([
-                ImageColumn::make('cover_image')
-                    ->label('Cover')
-                    ->width(50)
-                    ->toggleable(),
-
                 TextColumn::make('title')
                     ->label('Judul')
                     ->searchable()
