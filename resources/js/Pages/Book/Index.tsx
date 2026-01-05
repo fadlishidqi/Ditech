@@ -304,14 +304,32 @@ export default function BookIndex({ books, categories, filters }: Props) {
 
                                                     {/* Content */}
                                                     <div className="p-4 flex-1 flex flex-col">
-                                                        <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-tight">
-                                                            {book.title}
-                                                        </h3>
+                                                        <div className="flex items-start justify-between gap-2 mb-2">
+                                                            <h3 className="text-lg font-bold text-white line-clamp-2 leading-tight">
+                                                                {book.title}
+                                                            </h3>
+
+                                                            {Number((book as any).price) > 0 && (
+                                                                <div className="hidden sm:flex items-center justify-center px-3 py-1 rounded-full bg-yellow-400/15 backdrop-blur-md border border-yellow-400/40 shadow-[0_0_8px_rgba(250,204,21,0.3)] flex-shrink-0 text-[11px]">
+                                                                    <span className="font-semibold uppercase tracking-wider text-yellow-400 leading-none">
+                                                                        Premium
+                                                                    </span>
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                         
                                                         {/* Author */}
                                                         <p className="text-xs text-emerald-400 mb-2 uppercase tracking-wide font-semibold">
                                                             {book.author}
                                                         </p>
+                                                        {Number((book as any).price) > 0 && (
+                                                            <div className="sm:hidden inline-flex mt-2 items-center justify-center px-3 py-1.5 mb-2 rounded-full bg-yellow-400/15 backdrop-blur-md border border-yellow-400/40 shadow-[0_0_8px_rgba(250,204,21,0.3)] text-[10px]">
+                                                                <span className="font-semibold uppercase tracking-wider text-yellow-400 leading-none">
+                                                                    Premium
+                                                                </span>
+                                                            </div>
+                                                        )}
+
 
                                                         {/* Metadata Row */}
                                                         <div className="mt-auto pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
