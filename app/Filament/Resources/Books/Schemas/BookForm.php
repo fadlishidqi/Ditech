@@ -8,6 +8,7 @@ use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Get;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
@@ -44,6 +45,10 @@ class BookForm
                             ->label('Tahun Terbit')
                             ->numeric()
                             ->length(4),
+
+                        TextInput::make('e_isbn')
+                            ->label('E-ISBN') // Field Baru
+                            ->placeholder('Contoh: 978-602-xxxxx-x-x'),
                     ])
                     ->columns(2),
 
@@ -71,7 +76,7 @@ class BookForm
                     ])
                     ->columns(2),
 
-                Section::make('Detail')
+                Section::make('Detail & Kategori')
                     ->schema([
                         Textarea::make('description')
                             ->label('Sinopsis')
@@ -95,7 +100,7 @@ class BookForm
                     ])
                     ->columns(1),
 
-                Section::make('Pengaturan Tampilan')
+                Section::make('Pengaturan & Monetisasi')
                     ->schema([
                         Toggle::make('is_visible')
                             ->label('Tampilkan Buku Ini?')
@@ -106,6 +111,19 @@ class BookForm
                             ->label('Urutan')
                             ->numeric()
                             ->default(0),
+
+                        // Logic Berbayar
+                        Toggle::make('is_paid')
+                            ->label('Buku Berbayar?')
+                            ->live()
+                            ->default(false),
+
+                        TextInput::make('price')
+                            ->label('Harga (Rp)')
+                            ->prefix('Rp')
+                            ->numeric()
+                            ->visible(fn (Get $get) => $get('is_paid'))
+                            ->required(fn (Get $get) => $get('is_paid')),
                     ])
                     ->columns(2),
             ])

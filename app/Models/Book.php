@@ -17,6 +17,9 @@ class Book extends Model
         'author',
         'publisher',
         'year',
+        'is_paid',
+        'price',
+        'e_isbn',
         'file_source',
         'description',
         'cover_image',
@@ -28,8 +31,10 @@ class Book extends Model
 
     protected $casts = [
         'is_visible' => 'boolean',
+        'is_paid' => 'boolean',
         'tags' => 'array',
         'year' => 'integer',
+        'price' => 'integer'
     ];
 
     /**
