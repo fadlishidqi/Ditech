@@ -1,3 +1,4 @@
+// resources/js/Pages/Pricing/Index.tsx
 import React from 'react';
 import { Head } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
@@ -46,10 +47,10 @@ export default function PricingIndex({ pricings }: Props) {
                     <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
                         <div className="max-w-7xl mx-auto text-center">
                             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
-                                Penawaran Spesial
+                                Solusi Digital Tepat 
                             </h1>
                             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                                Solusi digital terbaik dengan harga yang kompetitif untuk kebutuhan bisnis Anda
+                                Di sini kami menawarkan beragam layanan dengan harga terjangkau dan benefit yang pasti sudah mencakup kebutuhan bisnis Anda.
                             </p>
                         </div>
                     </section>
@@ -90,7 +91,7 @@ export default function PricingIndex({ pricings }: Props) {
                                                 {/* Card Content */}
                                                 <div className="p-6 flex-1 flex flex-col">
                                                     {/* Title */}
-                                                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2 leading-tight">
+                                                    <h3 className="text-2xl font-bold text-white mb-2 line-clamp-2 leading-tight">
                                                         {item.title}
                                                     </h3>
 
@@ -103,7 +104,7 @@ export default function PricingIndex({ pricings }: Props) {
 
                                                     {/* Description */}
                                                     <div
-                                                        className="prose prose-invert prose-sm text-gray-300 leading-relaxed flex-grow"
+                                                        className="prose prose-invert prose-sm text-gray-300 leading-relaxed flex-grow space-y-3"
                                                         dangerouslySetInnerHTML={{ __html: item.description || '' }}
                                                     />
 

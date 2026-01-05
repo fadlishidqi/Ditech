@@ -1,3 +1,4 @@
+// resources/js/Pages/Book/Index.tsx
 import React, { useState } from "react";
 import { Head, Link, router } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
@@ -303,19 +304,19 @@ export default function BookIndex({ books, categories, filters }: Props) {
 
                                                     {/* Content */}
                                                     <div className="p-4 flex-1 flex flex-col">
+                                                        <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 leading-tight">
+                                                            {book.title}
+                                                        </h3>
+                                                        
                                                         {/* Author */}
                                                         <p className="text-xs text-emerald-400 mb-2 uppercase tracking-wide font-semibold">
                                                             {book.author}
                                                         </p>
 
-                                                        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2 leading-tight">
-                                                            {book.title}
-                                                        </h3>
-
                                                         {/* Metadata Row */}
                                                         <div className="mt-auto pt-3 border-t border-white/10 flex items-center justify-between text-xs text-gray-400">
                                                             <span>{book.year ? `Tahun ${book.year}` : 'N/A'}</span>
-                                                            <span className="group-hover:translate-x-1 transition-transform text-emerald-400 font-medium">
+                                                            <span className="hidden sm:inline group-hover:translate-x-1 transition-transform text-emerald-400 font-medium">
                                                                 Lihat Detail &rarr;
                                                             </span>
                                                         </div>
