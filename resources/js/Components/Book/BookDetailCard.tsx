@@ -1,8 +1,11 @@
+import React, { useState } from "react";
 import LoadingImage from "@/Components/LoadingImage";
 import {
     ArrowDownTrayIcon,
     BookOpenIcon,
     ShoppingCartIcon,
+    ChevronDownIcon, // Icon baru
+    ChevronUpIcon,   // Icon baru
 } from "@heroicons/react/24/outline";
 
 interface Book {
@@ -26,6 +29,8 @@ interface BookDetailCardProps {
 }
 
 export default function BookDetailCard({ book, onReadClick }: BookDetailCardProps) {
+    // State untuk mengontrol apakah sinopsis dibuka penuh atau tidak
+    const [isExpanded, setIsExpanded] = useState(false);
 
     const handleBuyClick = () => {
         const adminPhone = "6281398169073";
@@ -37,6 +42,16 @@ Mohon infonya.`;
         const whatsappUrl = `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
     };
+
+    // --- LOGIKA "BACA SELENGKAPNYA" ---
+    const MAX_LENGTH = 300; // Batas karakter untuk mobile
+    const description = book.description || "Tidak ada deskripsi.";
+    const isLongDescription = description.length > MAX_LENGTH;
+
+    // Teks yang akan ditampilkan (penuh atau dipotong)
+    const displayedDescription = isExpanded || !isLongDescription
+        ? description
+        : description.slice(0, MAX_LENGTH) + "...";
 
     return (
         <div className="bg-white/5 backdrop-blur-md rounded-3xl p-5 md:p-8 grid md:grid-cols-3 gap-8 md:gap-10 border border-white/10 shadow-2xl">
@@ -116,12 +131,36 @@ Mohon infonya.`;
                     </div>
                 )}
 
-                <h3 className="text-lg font-semibold text-emerald-400 mb-2 text-center md:text-left">
-                    Sinopsis
-                </h3>
-                <p className="text-gray-300 mb-8 whitespace-pre-line leading-relaxed text-sm md:text-base text-justify md:text-left">
-                    {book.description || "Tidak ada deskripsi."}
-                </p>
+                {/* SINOPSIS (Updated for Mobile Responsiveness) */}
+                <div className="mb-8">
+                    <h3 className="text-lg font-semibold text-emerald-400 mb-2 text-center md:text-left">
+                        Sinopsis
+                    </h3>
+                    
+                    <div className="text-gray-300 whitespace-pre-line leading-relaxed text-sm md:text-base text-justify md:text-left transition-all duration-300">
+                        {displayedDescription}
+                    </div>
+
+                    {/* Tombol Toggle (Hanya muncul jika teks panjang) */}
+                    {isLongDescription && (
+                        <button
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className="mt-2 text-emerald-400 text-sm font-medium hover:text-emerald-300 flex items-center justify-center md:justify-start gap-1 focus:outline-none transition-colors w-full md:w-auto py-2 md:py-0"
+                        >
+                            {isExpanded ? (
+                                <>
+                                    <span>Tutup Sinopsis</span>
+                                    <ChevronUpIcon className="w-4 h-4" />
+                                </>
+                            ) : (
+                                <>
+                                    <span>Baca Selengkapnya</span>
+                                    <ChevronDownIcon className="w-4 h-4" />
+                                </>
+                            )}
+                        </button>
+                    )}
+                </div>
 
                 {/* Buttons Logic */}
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
