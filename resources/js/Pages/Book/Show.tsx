@@ -1,3 +1,4 @@
+// resources/js/Pages/Book/Show.tsx
 import React, { useState } from "react";
 import { Head, Link } from "@inertiajs/react";
 import Navbar from "@/Components/Navbar";
@@ -45,11 +46,22 @@ export default function BookShow({ book }: Props) {
                     {/* Breadcrumb / Back Button */}
                     <Link
                         href="/books"
-                        className="inline-flex items-center text-gray-300 hover:text-white mb-6 transition-colors text-sm md:text-base"
+                        className="
+                            inline-flex items-center gap-2
+                            px-4 py-2 
+                            bg-white/10 backdrop-blur-md
+                            text-white
+                            rounded-full
+                            transition-all duration-300
+                            border border-white/10
+                            hover:bg-white/20
+                            mb-6
+                        "
                     >
-                        <ArrowLeftIcon className="h-4 w-4 mr-2" />
+                        <ArrowLeftIcon className="w-4 h-4" />
                         Kembali ke Daftar Buku
                     </Link>
+
 
                     {/* Component: Kartu Detail Buku */}
                     <BookDetailCard 
