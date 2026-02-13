@@ -127,15 +127,18 @@ export default function Home() {
 
             {/* CTA Buttons */}
             <div className={`mb-6 sm:mb-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full max-w-lg transition-transform duration-1000 delay-300 ${isVisible.hero ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
-              <Link
-                href="/konsultasi"
-                className="w-full sm:w-auto rounded-xl bg-blue-600 px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg shadow-blue-600/30 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-600/40 transition-all duration-300 transform hover:scale-105"
-              >
-                Konsultasikan kebutuhanmu. Gratis!
-              </Link>
+                <a
+                  href="https://wa.me/6281398169073?text=Halo%20Ditech%20Creative,%20saya%20ingin%20konsultasi."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto rounded-xl bg-blue-600 px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold text-white shadow-lg shadow-blue-600/30 hover:bg-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-600/40 transition-all duration-300 transform hover:scale-105"
+                >
+                  Konsultasikan kebutuhanmu. Gratis!
+                </a>
+
 
               <Link
-                href="/produk"
+                href="/portofolio"
                 className="w-full sm:w-auto rounded-xl border-2 border-emerald-400 bg-transparent px-4 sm:px-6 py-3 text-sm sm:text-base font-semibold text-emerald-400 hover:bg-emerald-400 hover:text-black focus:outline-none focus:ring-4 focus:ring-emerald-400/40 transition-all duration-300 transform hover:scale-105"
               >
                 Lihat Portfolio Kami
@@ -193,38 +196,6 @@ export default function Home() {
           >
             <LegalitasSection />
           </div>
-
-          {/* CTA SECTION - Mobile Optimized */}
-          <section 
-            ref={sectionRefs.cta}
-            className={`py-8 sm:py-12 lg:py-16 px-4 sm:px-6 transition-all duration-1000 delay-300 ${isVisible.cta ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
-          >
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-                Siap Memulai Project <span className="text-emerald-400">Digital</span> Anda?
-              </h2>
-              <p className="text-sm sm:text-base lg:text-lg text-white/80 mb-4 sm:mb-6 lg:mb-8 max-w-lg sm:max-w-xl lg:max-w-2xl mx-auto px-2 leading-relaxed">
-                Konsultasikan kebutuhan digital Anda dengan tim expert kami. Gratis dan tanpa komitmen.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 justify-center max-w-md sm:max-w-lg mx-auto">
-                <Link
-                  href="/konsultasi"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg sm:rounded-xl bg-emerald-500 px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold text-black hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-500/40 transition-all duration-300 transform hover:scale-105"
-                >
-                  Mulai Konsultasi Gratis
-                  <svg className="ml-2 w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </Link>
-                <Link
-                  href="/tentang-kami"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-lg sm:rounded-xl border-2 border-white/30 bg-transparent px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 text-sm sm:text-base lg:text-lg font-semibold text-white hover:bg-white/10 focus:outline-none focus:ring-4 focus:ring-white/20 transition-all duration-300 transform hover:scale-105"
-                >
-                  Tentang Kami
-                </Link>
-              </div>
-            </div>
-          </section>
         </main>
 
         <Footer />

@@ -10,37 +10,34 @@ use Illuminate\Support\Facades\DB;
 
 class VisitorLocations extends BaseWidget
 {
-    // Judul Widget
     protected static ?string $heading = 'Lokasi Pengunjung Terpopuler';
-    
-    // Urutan Widget di Dashboard (setelah chart)
     protected static ?int $sort = 3;
-    
-    // Lebar Widget (Full Width)
-    protected int | string | array $columnSpan = 'full';
+    protected int|string|array $columnSpan = 'full';
 
     public function table(Table $table): Table
     {
         return $table
             ->query(
-                // Query Grouping: Hitung jumlah kunjungan per Kota & Negara
                 Visit::query()
-                    ->select('country', 'city', DB::raw('count(*) as total_visits'))
+                    ->select([
+                        DB::raw("CONCAT(country, '-', city) as record_key"),
+                        'country',
+                        'city',
+                        DB::raw('COUNT(*) as total_visits'),
+                    ])
                     ->whereNotNull('city')
-                    ->where('city', '!=', 'Unknown') // Sembunyikan yang tidak terdeteksi
+                    ->where('city', '!=', 'Unknown')
                     ->groupBy('country', 'city')
                     ->orderByDesc('total_visits')
             )
             ->columns([
                 Tables\Columns\TextColumn::make('country')
                     ->label('Negara')
-                    ->searchable()
                     ->icon('heroicon-m-globe-alt')
                     ->color('primary'),
 
                 Tables\Columns\TextColumn::make('city')
                     ->label('Kota')
-                    ->searchable()
                     ->weight('bold'),
 
                 Tables\Columns\TextColumn::make('total_visits')
@@ -51,5 +48,13 @@ class VisitorLocations extends BaseWidget
             ])
             ->paginated([5, 10])
             ->defaultPaginationPageOption(5);
+    }
+
+    /**
+     * Filament v5 membutuhkan record key PUBLIC
+     */
+    public function getTableRecordKey($record): string
+    {
+        return (string) $record->record_key;
     }
 }
